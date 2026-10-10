@@ -1,0 +1,12 @@
+# Netlify build for the web app. The worker (npm run worker) does not run here;
+# it needs an always-on host. See docs/setup.md.
+#
+# Migrations are not run here: DATABASE_URL is Neon's pooled endpoint, which
+# can't hold Prisma's migration lock. Run `npm run db:migrate` against the
+# direct (non-pooler) host before deploying a schema change.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
